@@ -1,0 +1,23 @@
+simple inner join
+// dd(
+        //     DB::table('products')
+        //         ->join('colors', 'products.color_id', '=', 'colors.id')
+        //         ->join(
+        //             'categories',
+        //             'products.category_id',
+        //             '=',
+        //             'categories.id'
+        //         )
+        //         ->join('sizes', 'products.size_id', '=', 'sizes.id')
+        //         ->select(
+        //             'products.*',
+        //             'colors.color',
+        //             'categories.type',
+        //             'categories.thickness',
+        //             'categories.madein',
+        //             'sizes.size',
+        //             'products.price'
+        //         )
+
+        //         ->get()
+        // );
