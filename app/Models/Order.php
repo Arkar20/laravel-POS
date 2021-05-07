@@ -27,13 +27,14 @@ class Order extends Model
     {
         return unserialize($value);
     }
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //     static::addGlobalScope('total_orders_count', function () {
-    //         return Order::all()->count();
-    //     });
-    // }
+    public static function boot()
+    {
+        parent::boot();
+    }
+    public function getAllOrderCost()
+    {
+        return $this->sum('total_cost');
+    }
     public function totalOrders()
     {
         return Order::all()->count();

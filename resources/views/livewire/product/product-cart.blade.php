@@ -9,7 +9,7 @@
       </div>
       <div class="px-6 pb-2">
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$product->category->madein}}</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$product->price}}MMk</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$this->price}}MMk</span>
         
       </div>
       <input type="number" class="my-2 mx-3 border-2" value="1000" min="0" wire:model.defer="qty"/>

@@ -10,10 +10,10 @@ Document
 /**
 Use a better box model (opinionated).
 */
-[x-cloak] {
-    display: none !important;
-}
   
+  input:checked + svg {
+  	display: block;
+  }
 *,
 *::before,
 *::after {

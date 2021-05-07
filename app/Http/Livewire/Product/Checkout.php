@@ -22,6 +22,8 @@ class Checkout extends Component
     public $totalcost;
     public $status = 1;
     public $date;
+
+    public $specialCustomer;
     protected $rules = [
         'customer' => 'required',
     ];
@@ -45,6 +47,7 @@ class Checkout extends Component
     public function add()
     {
         $this->validate();
+
         // dd($this->status);
         $cart = serialize($this->cart);
         $order = Order::create([
@@ -60,7 +63,7 @@ class Checkout extends Component
             $order->products()->attach($item['id'], ['qty' => $item['qty']]);
         }
         \Cart::destroy();
-        return redirect()->route('voucher', $order->id);
+        return redirect()->route('product.display');
     }
     public function calTotalCost(Delivery $delivery)
     {

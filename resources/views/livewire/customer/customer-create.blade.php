@@ -1,5 +1,5 @@
 <div>
-    <form x-show="showForm" wire:submit.prevent="addCustomer">
+    <form x-show="showForm" >
   <div class="">
     <label class="block text-md font-light mb-2" for="username">Name</label>
     <input
@@ -31,6 +31,14 @@
     @enderror
   </div>
   <div class="mb-4">
+    <label class="block text-md font-light mb-2" for="text">Retail Customer</label>
+    <input
+      type="checkbox"
+      wire:model.defer='retail_customer'
+    class=" form-checkbox" type="text" name="text" id="" placeholder="text">
+    Retail Customer
+  </div>
+  <div class="mb-4">
     <label class="block text-md font-light mb-2" for="text">Company</label>
     <input 
     wire:model.defer='company'
@@ -51,10 +59,19 @@
   </div>
 
   <div class="flex items-center justify-between mb-5">
-    <button type="submit"
+   @if ($edit)
+       <button type="button"
+       wire:click="addCustomer"
     class="bg-indigo-600 hover:bg-blue-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="button">
-      LOGIN
+      Register
     </button>
+    @else
+      <button wire:click="updateCustomer"
+    class="bg-green-600 hover:bg-green-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="button">
+      Update
+    </button>
+   @endif
+    
   </div>
 </form>
 </div>

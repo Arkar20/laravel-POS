@@ -26,6 +26,16 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            {{-- role --}}
+          <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
+
+               <select name="role" wire:model="category" class="form-select w-full rounded-md">
+                <option value="super_user" >Super User</option>
+                <option value="admin" selected>admin</option>
+                
+            </select>     
+            </div>
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />

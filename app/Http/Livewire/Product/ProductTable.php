@@ -19,14 +19,25 @@ class ProductTable extends Component
     public $filteredProduct;
     public $colorsearch;
     public $categorysearch;
+    public $sizes;
+    public $colors;
+    public $categories;
+    public $loadstate = false;
 
-    public function mount()
+    public function mount($sizes, $colors, $categories)
     {
+        $this->sizes = $sizes;
+        $this->colors = $colors;
+        $this->categories = $categories;
         $this->filteredProduct = [];
     }
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+    public function loadfunction()
+    {
+        $this->loadstate = true;
     }
     public function updated()
     {
@@ -49,24 +60,26 @@ class ProductTable extends Component
     public function render()
     {
         return view('livewire.product.product-table', [
-            'products' => Product::where(function ($query) {
-                $query
-                    ->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhereHas('size', function ($size) {
-                        $size->Where('size', $this->search);
-                    });
-            })
+            'products' => $this->loadstate
+                ? Product::where(function ($query) {
+                    $query
+                        ->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhereHas('size', function ($size) {
+                            $size->where('size', $this->search);
+                        });
+                })
 
-                ->when($this->colorsearch, function ($query) {
-                    return $query->where('color_id', $this->colorsearch);
-                })
-                ->when($this->categorysearch, function ($query) {
-                    return $query->where('category_id', $this->categorysearch);
-                })
-                ->paginate(10),
-            'colors' => Color::all(),
-            'categories' => Category::all(),
-            'sizes' => Size::all(),
+                    ->when($this->colorsearch, function ($query) {
+                        return $query->where('color_id', $this->colorsearch);
+                    })
+                    ->when($this->categorysearch, function ($query) {
+                        return $query->where(
+                            'category_id',
+                            $this->categorysearch
+                        );
+                    })
+                    ->paginate(10)
+                : [],
         ]);
     }
     public function resetSearch()

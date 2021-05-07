@@ -22,9 +22,15 @@ class ProductSection extends Component
     public $color;
     public $category;
     public $desc;
-    public $price;
+    public $price = 0;
+    public $retail_price = 0;
     public $totalqty = 0;
+    public $loadstate = false;
 
+    public function updatedPrice()
+    {
+        $this->retail_price = $this->price - 1;
+    }
     protected $rules = [
         'name' => 'required|min:0',
         'color' => 'required|min:0',
@@ -32,9 +38,13 @@ class ProductSection extends Component
         'category' => 'required|min:0',
         'desc' => 'required|min:0',
         'price' => 'required',
+        'retail_price' => 'required',
         'totalqty' => 'required',
     ];
-
+    public function loadfunction()
+    {
+        $this->loadstate = true;
+    }
     public function render()
     {
         return view('livewire.product.product-section', [
@@ -55,6 +65,7 @@ class ProductSection extends Component
             'category_id' => $this->category,
             'desc' => $this->desc,
             'price' => $this->price,
+            'retail_price' => $this->retail_price,
             'total_qty' => $this->totalqty,
         ]);
     }

@@ -17,24 +17,53 @@ class CustomerTable extends Component
     use WithPagination;
     public $searchkeyword;
     public Collection $filteredcustomer;
-    public function mount()
+    public $loadstate = false;
+    public function updatingSearch()
     {
-        $this->filteredcustomer = collect();
+        $this->resetPage();
+    }
+    public function loadFunction()
+    {
+        $this->filteredcustomer = Customer::where(
+            'name',
+            'like',
+            '%' . $this->searchkeyword . '%'
+        )
+            ->orWhere('phnum1', 'like', '%' . $this->searchkeyword . '%')
+            ->orWhere('phnum2', 'like', '%' . $this->searchkeyword . '%')
+            ->orWhere('company', 'like', '%' . $this->searchkeyword . '%')
+
+            ->get();
+        $this->loadstate = true;
     }
 
     public function render()
     {
         return view('livewire.customer.customer-table', [
-            'customers' => Customer::where(
-                'name',
-                'like',
-                '%' . $this->searchkeyword . '%'
-            )
-                ->orWhere('phnum1', 'like', '%' . $this->searchkeyword . '%')
-                ->orWhere('phnum2', 'like', '%' . $this->searchkeyword . '%')
-                ->orWhere('company', 'like', '%' . $this->searchkeyword . '%')
+            'customers' => $this->loadstate
+                ? Customer::where(
+                    'name',
+                    'like',
+                    '%' . $this->searchkeyword . '%'
+                )
+                    ->orWhere(
+                        'phnum1',
+                        'like',
+                        '%' . $this->searchkeyword . '%'
+                    )
+                    ->orWhere(
+                        'phnum2',
+                        'like',
+                        '%' . $this->searchkeyword . '%'
+                    )
+                    ->orWhere(
+                        'company',
+                        'like',
+                        '%' . $this->searchkeyword . '%'
+                    )
 
-                ->get(),
+                    ->paginate(10)
+                : [],
         ]);
     }
     public function exportExcel()
@@ -43,5 +72,9 @@ class CustomerTable extends Component
             new ModelExport(Customer::class),
             'customers.csv'
         );
+    }
+    public function edit(Customer $customer)
+    {
+        $this->emit('editcustomer', $customer);
     }
 }

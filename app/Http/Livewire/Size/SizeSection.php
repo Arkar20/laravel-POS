@@ -15,7 +15,7 @@ class SizeSection extends Component
     public $size;
     public $editSize;
     public $rules = [
-        'size' => 'required|min:3|max:10|unique:sizes,size,{$this->size->id}',
+        'size' => 'required|min:1|max:10|unique:sizes,size,{$this->size->id}',
     ];
 
     public function updated($propertyName)

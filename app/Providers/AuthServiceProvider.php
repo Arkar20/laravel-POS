@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,9 @@ class AuthServiceProvider extends ServiceProvider
             $cart = \Cart::count();
 
             return $cart;
+        });
+        Gate::define('can_export', function (User $user) {
+            return $user->role == 'super_user';
         });
     }
 }

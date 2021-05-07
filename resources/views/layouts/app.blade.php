@@ -19,6 +19,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 <style>
+   [x-cloak=""] { display: none; }
+
 /* CHECKBOX TOGGLE SWITCH */
 /* @apply rules for documentation, these do not work as inline style */
 .toggle-checkbox:checked {
@@ -30,7 +32,10 @@
   @apply: bg-green-400;
   background-color: #68D391;
 }
-</style>        @livewireStyles
+ 
+</style>       
+
+@livewireStyles
         
     </head>
     <body class="font-sans antialiased">

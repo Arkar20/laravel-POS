@@ -13,6 +13,7 @@
           <select wire:model="category" class="form-select">
                <option>Choose One Category</option>
                 <option value="Pattern စက္ကူ">Patternစက္ကူ</option>
+                <option value="Markerစက္ကူ">Markerစက္ကူ</option>
                 <option value="အင်္ကျီကဒ်">အင်္ကျီကဒ်</option>
             </select>
             @error('category')
@@ -96,6 +97,6 @@
 </table>
 </div>
      <div class="mx-auto">
-    {{-- {{$sizes->links()}} --}}
+    {{$categories->links()}}
  </div>
 </div>

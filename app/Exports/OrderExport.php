@@ -14,6 +14,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
 {
     use Exportable;
     public $item;
+    public $price;
     public function __construct($item)
     {
         $this->item = $item;
@@ -25,6 +26,9 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
     }
     public function map($item): array
     {
+        $this->price = $item->order->customer->retail_customer
+            ? $item->product->retail_price
+            : $item->product->price;
         return [
             'ORD-000' . $item->order->id,
             $item->order->customer->name,
@@ -32,6 +36,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             $item->order->customer->phnum2,
             $item->order->customer->address,
             $item->product->size->size,
+            $this->price,
             $item->product->category->type,
             $item->product->color->color .
             '-' .
@@ -39,7 +44,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             $item->product->category->madein,
             $item->qty,
             $item->order->delivery ? $item->order->delivery->price : 'Free',
-            $item->qty * $item->product->price . 'MMK',
+            $item->qty * $this->price,
         ];
     }
     public function headings(): array
@@ -51,6 +56,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             'Customer Phnum2',
             'Customer Address',
             'Product size',
+            'Product Price',
             'Product category',
             'Color and Thickness',
             'Product Madein',

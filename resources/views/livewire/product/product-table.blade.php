@@ -23,7 +23,7 @@
     <x-button wire:click="exportExcel" class="bg-green-500">Export To Excel</x-button>
     <x-button wire:click="resetSearch" class="border border-green-500">Reset</x-button>
    </div>
-<table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200" >
+<table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200" wire:init='loadfunction' >
   <tr class="text-left border-b border-gray-300">
     <th class="px-4 py-3">No</th>
     <th class="px-4 py-3">Product Name</th>
@@ -53,11 +53,10 @@
                 
  @endforelse
 
-
-  
 </table>
-</div>
-     <div class="mx-auto">
-    {{$products->links()}}
+<div class="mx-auto">
+    {{$loadstate?$products->links():''}}
  </div>
+</div>
+     
 </div>

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Exports\OrderExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,5 +38,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function exportExcel($data)
+    {
+        $this->authorize('create', auth()->user()->id);
+        Excel::download(new OrderExport($data), 'orders' . now() . '.xlsx');
     }
 }

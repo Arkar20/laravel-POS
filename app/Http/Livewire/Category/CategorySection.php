@@ -16,7 +16,7 @@ class CategorySection extends Component
     public $editCategory;
     protected $rules = [
         'category' => 'required',
-        'madein' => 'required|min:1|max:10',
+        'madein' => 'required|min:1',
         'thickness' => 'required|max:10',
     ];
     public function updated($propertyName)
@@ -66,7 +66,7 @@ class CategorySection extends Component
             'text' => '',
             'confirmButtonText' => 'Ok',
             'cancelButtonText' => 'Cancel',
-            'showCancelButton' => true,
+            'showCancelButton' => false,
             'showConfirmButton' => false,
         ]);
         $this->resetForm();

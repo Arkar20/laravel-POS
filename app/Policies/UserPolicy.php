@@ -2,16 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\Order;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrderPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, Order $order)
+    public function create(User $user)
     {
-        return $order->user->is($user);
+        return true;
     }
 }

@@ -7,6 +7,7 @@
     
     <form 
          wire:submit.prevent='add'
+         wire:init='loadfunction'
          class="lg:mx-20 sm:mx-10 flex justify-center px-4 py-4 bg-white mt-10 rounded shadow">
         
        
@@ -51,7 +52,10 @@
                @endforeach
            </select>
             <label for="category" class="block">Price</label>
-           <input class="form-input px-4 mx-1 rounded-sm" wire:model="price"/>
+           <input type="number" class="form-input px-4 mx-1 rounded-sm" wire:model.lazy="price" min="0/>
+
+            <label for="category" class="block">Retail Price</label>
+           <input class="form-input px-4 mx-1 rounded-sm" wire:model="retail_price" min="0"/>
             <label for="category" class="block">Total Quantity</label>
            <input class="form-input px-4 mx-1 rounded-sm" wire:model="totalqty"/>
 <br>
@@ -78,5 +82,9 @@ class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent 
 
 
 <div>
- <livewire:product.product-table />
+  @if ($loadstate)
+        <livewire:product.product-table :sizes="$sizes" :colors="$colors" :categories="$categories"/>
+      
+  @endif
+
 </div>

@@ -8,7 +8,13 @@ use Livewire\Component;
 class ProductCart extends Component
 {
     public Product $product;
+    public $price;
     public $qty;
+    public function mount($product, $price)
+    {
+        $this->product = $product;
+        $this->price = $price;
+    }
     public function render()
     {
         return view('livewire.product.product-cart');
@@ -20,10 +26,20 @@ class ProductCart extends Component
             'name' => $product->getProductDetails(),
             'qty' => $this->qty,
             'tax' => 0,
-            'price' => $product->price,
+            'price' => $this->price,
             'weight' => 0,
         ]);
         $this->emit('cartUpdated');
         $this->qty = '';
+        $this->alert('success', 'Item Added To The Cart!', [
+            'position' => 'top-end',
+            'timer' => 3000,
+            'toast' => true,
+            'text' => '',
+
+            'cancelButtonText' => false,
+            'showCancelButton' => false,
+            'showConfirmButton' => false,
+        ]);
     }
 }
