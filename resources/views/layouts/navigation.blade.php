@@ -57,6 +57,9 @@
                 <x-nav-link :href="route('delivery')" :active="request()->routeIs('delivery')">
                         {{ __('Deivery Fees ') }}
                     </x-nav-link>
+                     <x-nav-link class="mx-4" href="{{ route('order.manage') }}" :active="request()->routeIs('order.manage')">
+                         Manage Orders 
+                    </x-nav-link>
                     @endauth
                     </div>
               
@@ -172,7 +175,10 @@
                         </x-slot>
                         
                     </x-dropdown>
-                    </x-responsive-nav-link>
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="mx-4" href="{{ route('order.manage') }}" :active="request()->routeIs('order.manage')">
+                    Manage Orders 
+               </x-responsive-nav-link> 
             </div>
                     
            

@@ -45,6 +45,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             $item->qty,
             $item->order->delivery ? $item->order->delivery->price : 'Free',
             $item->qty * $this->price,
+            $item->order->order_date,
         ];
     }
     public function headings(): array
@@ -63,6 +64,7 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
             'Order Quantity',
             'Delivery',
             'Total Cost',
+            'Date',
         ];
     }
 }

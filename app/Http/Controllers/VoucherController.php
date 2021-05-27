@@ -10,7 +10,7 @@ class VoucherController extends Controller
     public function show(Order $order)
     {
         // return $order;
-        $this->authorize('update', $order);
+        // $this->authorize('update', $order);
 
         return view('voucher.vouchermyanmar', compact('order'));
     }

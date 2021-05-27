@@ -16,7 +16,7 @@ class CustomerTable extends Component
 {
     use WithPagination;
     public $searchkeyword;
-    public Collection $filteredcustomer;
+    public $filteredcustomer;
     public $loadstate = false;
     public function updatingSearch()
     {

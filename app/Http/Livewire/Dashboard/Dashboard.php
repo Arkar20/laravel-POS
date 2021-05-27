@@ -16,25 +16,6 @@ class Dashboard extends Component
     public $monthlyrevenue = '-';
     public $todayrevenue = '-';
 
-    // public function mount()
-    // {
-    //     $order = Order::query();
-
-    //     $this->totalrevenue = $order->sum('total_cost');
-    //     $this->totalOrder = $order->count();
-    //     $this->totalCustomers = Customer::all()->count();
-    //     $this->monthlyrevenue = $order
-    //         ->whereMonth('order_date', now('m'))
-    //         ->sum('total_cost');
-    //     $this->todayOrders = Order::whereDate(
-    //         'created_at',
-    //         'like',
-    //         '%' . Carbon::today()->toDateString() . '%'
-    //     )->count();
-    //     $this->todayrevenue = $order
-    //         ->whereDate('order_date', Carbon::today()->toDateString())
-    //         ->sum('total_cost');
-    // }
     public function loadfunction()
     {
         $order = Order::query();
@@ -46,9 +27,8 @@ class Dashboard extends Component
             ->whereMonth('order_date', now('m'))
             ->sum('total_cost');
         $this->todayOrders = Order::whereDate(
-            'created_at',
-            'like',
-            '%' . Carbon::today()->toDateString() . '%'
+            'order_date',
+            Carbon::today()->toDateString()
         )->count();
         $this->todayrevenue = $order
             ->whereDate('order_date', Carbon::today()->toDateString())

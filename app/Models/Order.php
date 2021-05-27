@@ -45,6 +45,11 @@ class Order extends Model
             return $order->total_cost;
         });
     }
+    public function cartProduct()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -56,6 +61,6 @@ class Order extends Model
             'order_products',
             'order_id',
             'product_id'
-        );
+        )->withTimestamps();
     }
 }

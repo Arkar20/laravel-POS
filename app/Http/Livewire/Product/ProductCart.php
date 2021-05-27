@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class ProductCart extends Component
 {
-    public Product $product;
+    public $product;
     public $price;
     public $qty;
     public function mount($product, $price)

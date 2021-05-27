@@ -4,6 +4,7 @@ use App\Models\Delivery;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Product\Checkout;
 use App\Http\Livewire\Size\SizeSection;
+use App\Http\Livewire\Order\ManageOrder;
 use App\Http\Livewire\Color\ColorSection;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\CustomerController;
@@ -52,6 +53,8 @@ Route::prefix('admin')
             VoucherController::class,
             'show',
         ])->name('voucher');
+
+        Route::get('/orders/manage', ManageOrder::class)->name('order.manage');
     });
 Route::get('/showroom', ProductDisplay::class)->name('product.display');
 

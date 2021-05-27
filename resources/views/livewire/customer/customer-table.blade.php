@@ -7,7 +7,7 @@
 <x-button wire:click="exportExcel"> Export To Excel</x-button>
   
     </div>
-<table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200" wire:init='loadFunction'>
+<table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800  overflow-scroll text-gray-200" wire:init='loadFunction'>
   <tr class="text-left border-b border-gray-300">
     <th class="px-4 py-3">No</th>
     <th class="px-4 py-3">Customer </th>

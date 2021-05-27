@@ -33,6 +33,7 @@
     <th class="px-4 py-3">Order Quantity</th>
     <th class="px-4 py-3">Delivery</th>
     <th class="px-4 py-3">Total Cost</th>
+    <th class="px-4 py-3">Date</th>
     
     <th class="px-4 py-3">Status</th>
     <th class="px-4 py-3">Action</th>
@@ -55,6 +56,7 @@
                 <td class="px-4 py-3">{{$item->qty}}</td>
                 <td class="px-4 py-3">{{$item->order->delivery?$item->order->delivery->price:'Free'}}</td>
                 <td class="px-4 py-3">{{$item->qty*$item->product->price}}MMK</td>
+                <td class="px-4 py-3">{{$item->order->order_date}}</td>
                 <td class="px-4 py-3">
                     {!!$item->order->status?
                     '<p class="p-2 bg-green-500 rounded-sm shadow-md">Done</p>'
@@ -64,7 +66,9 @@
                 
                 <td class="px-4 py-3">
                    @if ($item->order->status)
-                       <button>View Voucher</button>
+                       <button>
+                           <a href="{{ route('voucher', $item->order->id) }}">View VOucher</a>
+                       </button>
                        <button wire:click="deleteOrder({{$item->order->id}})">Delete</button>
                    @else 
                        <button>Confirm</button>

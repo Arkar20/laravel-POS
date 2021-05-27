@@ -44,4 +44,8 @@ class User extends Authenticatable
         $this->authorize('create', auth()->user()->id);
         Excel::download(new OrderExport($data), 'orders' . now() . '.xlsx');
     }
+    public function isAdministrator()
+    {
+        return $this->role = 'super_user';
+    }
 }

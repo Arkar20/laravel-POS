@@ -13,7 +13,7 @@ class CustomerCreate extends Component
     public $address;
     public $company;
     public $edit = true;
-    public Customer $customer;
+    public $customer;
     public $retail_customer = 0;
     protected $listeners = ['editcustomer' => 'updateField'];
 

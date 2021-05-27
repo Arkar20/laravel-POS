@@ -1,4 +1,4 @@
-<div>
+<div class="overflow-hidden">
     <form x-show="showForm" >
   <div class="">
     <label class="block text-md font-light mb-2" for="username">Name</label>
@@ -6,7 +6,7 @@
     wire:model.defer='name'
     class="w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" type="text" name="username" id="" placeholder="Username">
     @error('name')
-               <p class="text-red-500">{{$message}}</p>
+               <p class="text-red-500 bg-red-300 ">{{$message}}</p>
 
     @enderror
   </div>

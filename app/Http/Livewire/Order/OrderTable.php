@@ -185,9 +185,7 @@ class OrderTable extends Component
                                 });
                         });
                 })
-                    ->whereHas('order', function ($date) {
-                        $date->orderBy('order_date', 'desc');
-                    })
+
                     ->when($this->sizesearch, function ($size) {
                         $size->whereHas('product', function ($product) {
                             $product->whereHas('size', function ($size) {
@@ -200,7 +198,7 @@ class OrderTable extends Component
                             $order->whereDate('order_date', $this->datesearch);
                         });
                     })
-
+                    ->latest()
                     ->paginate(10)
                 : [],
             'sizes' => Size::all(),

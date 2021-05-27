@@ -15,6 +15,7 @@
                 <option value="Pattern စက္ကူ">Patternစက္ကူ</option>
                 <option value="Markerစက္ကူ">Markerစက္ကူ</option>
                 <option value="အင်္ကျီကဒ်">အင်္ကျီကဒ်</option>
+                <option value="ခေါင်းချိုးကဒ်">ခေါင်းချိုးကဒ်</option>
             </select>
             @error('category')
                 <p class="text-xs text-red-600">{{$message}}</p>

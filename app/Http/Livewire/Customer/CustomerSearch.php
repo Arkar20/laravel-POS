@@ -25,6 +25,8 @@ class CustomerSearch extends Component
                 'like',
                 '%' . $this->search . '%'
             )
+                ->orWhere('phnum1', 'like', '%' . $this->search . '%')
+                ->orWhere('phnum2', 'like', '%' . $this->search . '%')
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ]);

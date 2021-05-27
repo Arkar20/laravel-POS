@@ -11,7 +11,7 @@
          class="lg:mx-20 sm:mx-10 flex justify-center px-4 py-4 bg-white mt-10 rounded shadow">
         
        
-         <div>
+         <div class="overflow-hidden">
             
             @foreach ($errors->all() as $error)
                  <div class="mx-4 my-2">
